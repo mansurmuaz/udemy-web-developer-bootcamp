@@ -9,4 +9,13 @@
     <li> <%= animalIndex.name %> </li>
     
 <% }) %>
+
+<form action="/addanimal" method="POST">
+    <input type="text" name="name" placeholder="Name">
+    <input type = "hidden" name = "animal" value = <%=animal%> />
+
+    <button>Add <b><%= animal %></b></button>
+    
+</form>
+
 <% include partials/footer %>

@@ -9,6 +9,15 @@
     <li> <b><%= animal.name %></b> - <%= animal.animal %> </li>
 <% }) %>
 
+<br>
+
+<form action="/addanimal" method="POST">
+    <input type="text" name="name" placeholder="Name">
+    <input type="text" name="animal" placeholder="Animal species">
+    <button>Add Animal</button>
+    
+</form>
+
 
 
 <p> <b>Note: </b>Also you can search any animal by its name like /animals/dog</p>
