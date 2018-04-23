@@ -1,0 +1,13 @@
+<h1>This is the animals page</h1>
+
+
+<h2>You can find the all animals in the jungle below:</h2>
+
+
+<% animals.forEach(function(animal){ %>
+    <li> <b><%= animal.name %></b> - <%= animal.animal %> </li>
+<% }) %>
+
+
+
+<p> <b>Note: </b>Also you can search any animal by its name like /animals/dog</p>
