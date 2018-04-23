@@ -28,20 +28,21 @@ app.get("/jungle", function(req, res){
 
 app.get("/jungle/:animal", function(req, res) {
    
-  var sound;
+
    
   var animal = req.params.animal; 
    
-   if (animal == "pig") {
-        sound = "Oink";
-   }else if(animal == "cow"){
-       sound = "Mooooo!";
-   }else if(animal == "dog"){
-       sound = "Woof Woooff!!";
-   }else{
-       sound = "lOLOLOLOLOLOLOLO!"
+   var sounds = {
+       pig : "Oink",
+       dog : "Woof Wooof!",
+       cow : "Mooo",
+       cat : "I still love you :)"
    }
    
+   
+    var sound = sounds[animal];
+     
+     
    res.send("The " + animal + " says " + sound);
     
 });
