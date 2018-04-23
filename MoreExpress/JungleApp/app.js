@@ -1,6 +1,11 @@
 var express = require("express");
 var app = express();
 
+app.use(express.static("public"));
+app.set("view engine", "ejs");
+
+
+
 
 var animalArray = [ {animal: "Dog", name: "Rusty"},
                 {animal: "Cat", name: "Charlie"},
@@ -13,13 +18,13 @@ var animalArray = [ {animal: "Dog", name: "Rusty"},
 
 
 app.get("/", function(req,res){
-    res.render("home.ejs");
+    res.render("home");
 });
 
 
 app.get("/animals", function(req, res){
     
-    res.render("animals.ejs", {animals: animalArray});
+    res.render("animals", {animals: animalArray});
 });
 
 
@@ -37,7 +42,7 @@ app.get("/animals/:animal", function(req, res){
         }
     });
     
-    res.render("animal.ejs", {animals: reqAnimals, animal: animalParam});
+    res.render("animal", {animals: reqAnimals, animal: animalParam});
     
 });
 
