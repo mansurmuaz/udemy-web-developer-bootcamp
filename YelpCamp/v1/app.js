@@ -35,12 +35,7 @@ app.get("/", function(req, res){
 
 app.get("/campgrounds", function(req, res){
    
-   
-   
-                    
     res.render("campgrounds", {campgrounds: campgrounds});
-   
-   
    
 });
 
