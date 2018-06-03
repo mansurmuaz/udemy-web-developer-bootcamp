@@ -40,7 +40,7 @@ Cat.create({
         console.log("New cat added successfully: ");
         console.log(cat);
     }
-})
+});
 
 
 //retrieve all cats in the databse
