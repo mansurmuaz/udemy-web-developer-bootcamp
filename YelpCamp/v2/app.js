@@ -12,15 +12,16 @@ mongoose.connect("mongodb://localhost/yelp_camp");
 
 var campgroundSchema = new mongoose.Schema({
     name: String,
-    image: String
+    image: String,
+    description: String
 });
 
 var Campground = mongoose.model("Campground", campgroundSchema);
 
 // Campground.create(
 //     {
-//         name:"Antalya",
-//         image:"https://www.kolayyolculuk.com/blog/wp-content/uploads/2016/02/08-yazili-kanyon-kolay-yolculuk.jpg"
+//         name:"Erciyes", image:"https://www.outdoorhaber.com/wp-content/uploads/2012/02/erciyes_sutdonduran_kamp-1-990x556.jpg",
+//         description:"Naberr Toooppraaamm :DD"
 //     }, function (err, savedCampground) {
 //         if (err) {
 //             console.log("Error while creating campground : " + err);
@@ -62,7 +63,7 @@ app.get("/campgrounds", function(req, res){
            console.log("Error while retrieving data from DB : " + err);
        }else{
            console.log("Successfully retrieved data " + returnedCampgrounds);
-           res.render("campgrounds", {campgrounds: returnedCampgrounds});
+           res.render("index", {campgrounds: returnedCampgrounds});
        }
    });
 });
@@ -72,9 +73,9 @@ app.post("/campgrounds", function(req, res){
    // get data from the form and add it to the campground array
    var name = req.body.name;
    var image = req.body.image;
-   
-   var newCampground = {name: name, image: image};
-   
+   var description = req.body.description;
+  
+   var newCampground = {name: name, image: image, description: description};
    
     Campground.create( newCampground, function (err, savedCampground) {
         if (err) {
@@ -90,6 +91,21 @@ app.post("/campgrounds", function(req, res){
 
 app.get("/campgrounds/new", function(req, res) {
    res.render("new");
+});
+
+
+app.get("/campgrounds/:id", function(req, res) {
+    
+    //Find the campground with provided ID
+    Campground.findById(req.params.id, function (err, foundCampground) {
+        if(err){
+            console.log("Error while getting foundCampground : " + err );
+        } else {
+            console.log("Successfully found Campground : " +  foundCampground);
+            //Render show template with that campground!
+            res.render("show", {campground: foundCampground});
+        }
+    });
 });
 
 
