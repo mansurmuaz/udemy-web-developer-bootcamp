@@ -1,0 +1,9 @@
+<h1>Hello from index page!</h1>
+
+<%blogs.forEach(function(blog){ %>
+    <div>
+        <h2><%=blog.title%></h2>
+        <img src="<%=blog.image%>">
+        <%=blog.body%>
+    </div>
+<% }); %>
