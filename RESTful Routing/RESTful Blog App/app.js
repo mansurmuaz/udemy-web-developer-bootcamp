@@ -72,6 +72,22 @@ app.post("/blogs", function(req, res){
 });
 
 
+//===========SHOW==============
+app.get("/blogs/:id", function(req, res) {
+   
+   var blogID = req.params.id;
+   
+    Blog.findById(blogID, function (err, returnedBlog) {
+        if (err) {
+            console.log("Error while retrieving data from DB: " + err);
+            res.redirect("/blogs");
+        } else {
+            res.render("show", {blog: returnedBlog});
+        }
+    });
+});
+
+
 
 
 

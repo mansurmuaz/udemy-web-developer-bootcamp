@@ -7,7 +7,8 @@
         <h2><%=blog.title%></h2>
         <img src="<%=blog.image%>">
         <%=blog.created%>
-        <%=blog.body%>
+        <%=blog.body.substring(0, 100)%>...
+        <a href="/blogs/<%=blog._id%>">Read more...</a>
     </div>
 <% }); %>
 
