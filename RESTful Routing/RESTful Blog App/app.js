@@ -32,6 +32,7 @@ app.get("/", function(req, res) {
 });
 
 
+//===========INDEX==============
 app.get("/blogs", function(req, res){
     Blog.find({}, function (err, returnedBlogs) {
         if (err) {
@@ -41,6 +42,40 @@ app.get("/blogs", function(req, res){
         }
     });
 });
+
+
+
+//===========NEW==============
+app.get("/blogs/new", function(req, res) {
+    res.render("new");
+});
+
+//===========CREATE==============
+app.post("/blogs", function(req, res){
+    
+    //Create new blog and add it to DB
+    var newBlog = req.body.blog;
+    // var newBlogTitle = req.body.blog.title;
+    // var newBlogImage = req.body.blog.image;
+    // var newBlogBody = req.body.blog.body;
+    
+    Blog.create(newBlog, function (err, createdBlog) {
+        if (err) {
+            console.log("Error while creating new Blog : " + err);
+            res.render("new");
+        }else{
+            console.log("New Blog created : " + createdBlog);
+            //Redirect to /blogs
+            res.redirect("/blogs");
+        }
+    });
+});
+
+
+
+
+
+
 
 
 app.listen(process.env.PORT, process.env.IP, function(){
