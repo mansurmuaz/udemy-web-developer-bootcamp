@@ -19,11 +19,11 @@ var blogSchema = new mongoose.Schema({
 
 var Blog = mongoose.model("Blog", blogSchema);
 
-Blog.create({
-    title: "Hello World!",
-    image: "https://yannbraga.com/wp-content/uploads/2017/03/hello-world-1.png",
-    body: "Hello my new blog! Hello my new blog! Hello my new blog! Hello my new blog! Hello my new blog! Hello my new blog! "
-});
+// Blog.create({
+//     title: "Hello World!",
+//     image: "https://yannbraga.com/wp-content/uploads/2017/03/hello-world-1.png",
+//     body: "Hello my new blog! Hello my new blog! Hello my new blog! Hello my new blog! Hello my new blog! Hello my new blog! "
+// });
 
 
 //RESTFUL ROUTES

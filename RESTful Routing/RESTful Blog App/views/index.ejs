@@ -1,3 +1,5 @@
+<%include ./partials/header%>
+
 <h1>Hello from index page!</h1>
 
 <%blogs.forEach(function(blog){ %>
@@ -7,3 +9,6 @@
         <%=blog.body%>
     </div>
 <% }); %>
+
+
+<%include ./partials/footer%>
