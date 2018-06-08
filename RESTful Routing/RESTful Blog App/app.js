@@ -1,5 +1,6 @@
 var bodyParser  = require("body-parser"),
 mongoose        = require("mongoose"),
+expressSanitizer= require("express-sanitizer"),
 methodOverride  = require("method-override"),
 express         = require("express"),
 app             = express();
@@ -9,6 +10,7 @@ mongoose.connect("mongodb://localhost/restful_blog_app");
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(expressSanitizer());
 app.use(methodOverride("_method"));
 
 // Mongoose/Model Config 
@@ -56,6 +58,7 @@ app.get("/blogs/new", function(req, res) {
 app.post("/blogs", function(req, res){
     
     //Create new blog and add it to DB
+    req.body.blog.body = req.sanitize(req.body.blog.body)
     var newBlog = req.body.blog;
     // var newBlogTitle = req.body.blog.title;
     // var newBlogImage = req.body.blog.image;
@@ -107,7 +110,9 @@ app.get("/blogs/:id/edit", function(req, res) {
 
 //===========UPDATE==============
 app.put("/blogs/:id", function(req, res){
+   
     var blogID = req.params.id;
+    req.body.blog.body = req.sanitize(req.body.blog.body)
     var data = req.body.blog;
     
     Blog.findByIdAndUpdate(blogID, data, function(err, updatedBlog){
