@@ -1,5 +1,6 @@
 var bodyParser  = require("body-parser"),
 mongoose        = require("mongoose"),
+methodOverride  = require("method-override"),
 express         = require("express"),
 app             = express();
 
@@ -8,6 +9,7 @@ mongoose.connect("mongodb://localhost/restful_blog_app");
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(methodOverride("_method"));
 
 // Mongoose/Model Config 
 var blogSchema = new mongoose.Schema({
@@ -88,7 +90,35 @@ app.get("/blogs/:id", function(req, res) {
 });
 
 
+//===========EDIT==============
+app.get("/blogs/:id/edit", function(req, res) {
+    var blogID = req.params.id;
+    
+    Blog.findById(blogID, function (err, returnedBlog) {
+        if (err) {
+            console.log("Error while retrieving data from DB: " + err);
+            res.redirect("/blogs/");
+        } else {
+            res.render("edit", {blog: returnedBlog});
+        }
+    });
+});
 
+
+//===========UPDATE==============
+app.put("/blogs/:id", function(req, res){
+    var blogID = req.params.id;
+    var data = req.body.blog;
+    
+    Blog.findByIdAndUpdate(blogID, data, function(err, updatedBlog){
+        if (err) {
+            console.log("Error while retrieving data from DB: " + err);
+            res.redirect("/blogs");
+        } else {
+            res.redirect("/blogs/"+blogID);
+        }
+    })
+})
 
 
 
