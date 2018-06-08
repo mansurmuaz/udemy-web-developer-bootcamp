@@ -117,8 +117,24 @@ app.put("/blogs/:id", function(req, res){
         } else {
             res.redirect("/blogs/"+blogID);
         }
-    })
-})
+    });
+});
+
+
+//===========DELETE==============
+app.delete("/blogs/:id", function(req, res){
+    var blogID = req.params.id;
+    var data = req.body.blog;
+
+    Blog.findByIdAndRemove(blogID, data, function(err, updatedBlog){
+        if (err) {
+            console.log("Error while retrieving data from DB: " + err);
+            res.redirect("/blogs");
+        } else {
+            res.redirect("/blogs/");
+        }
+    });
+});
 
 
 
