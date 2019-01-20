@@ -1,5 +1,6 @@
-# udemy-web-developer-bootcamp
-Udemy Web Developer Bootcam with Colt Steele
+#Web Development Bootcamp
+
+This repo for the Udemy course Web Developer Bootcamp with Colt Steele. The code includes some improvements and modifications.
 
 Udemy course link: 
 https://www.udemy.com/the-web-developer-bootcamp/
